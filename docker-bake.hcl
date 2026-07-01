@@ -3,7 +3,7 @@ variable "VERSION" {
 }
 
 variable "REPO" {
-  default = "ghcr.io/promi4s/ocelescope-instance-template"
+  default = "ocelescope"
 }
 
 group "default" {

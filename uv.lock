@@ -1197,14 +1197,12 @@ source = { virtual = "." }
 dependencies = [
     { name = "ocelescope-backend" },
     { name = "ocelescope-module-example" },
-    { name = "ocelescope-module-filter" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "ocelescope-backend", specifier = ">=0.1.1" },
     { name = "ocelescope-module-example", editable = "backend-modules/example" },
-    { name = "ocelescope-module-filter", specifier = ">=0.1.1" },
 ]
 
 [[package]]
@@ -1217,20 +1215,6 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "ocelescope-backend", specifier = ">=0.1.1" }]
-
-[[package]]
-name = "ocelescope-module-filter"
-version = "0.1.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "fastapi" },
-    { name = "ocelescope" },
-    { name = "ocelescope-backend" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e1/99/e292d70135a9297e2421b704516257c8cbc32c9da36eca9758bee57d1c62/ocelescope_module_filter-0.1.1.tar.gz", hash = "sha256:984f0e76492ecaefeeac71055234f15416a914844fc7b194508a3a080d7395ee", size = 1861, upload-time = "2026-06-29T12:24:55.5Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/c1/4b6ae40bf434a9be195e6e7e1c2362f1e7abc73df716b1f5b2e0788c9d2c/ocelescope_module_filter-0.1.1-py3-none-any.whl", hash = "sha256:438e9a5e2a4c8e41be376bf40dee986928bc78241da83e3122a95ef95ec26c24", size = 3662, upload-time = "2026-06-29T12:24:52.99Z" },
-]
 
 [[package]]
 name = "orjson"
