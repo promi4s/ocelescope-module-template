@@ -20,9 +20,6 @@
     "paths": {
       "@/*": [
         "./*"
-      ],
-      "@instance/*": [
-        "../frontend-modules/*/src/index.ts"
       ]
     }
   },

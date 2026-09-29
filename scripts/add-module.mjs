@@ -27,6 +27,7 @@ const TEMPLATES = {
 };
 const APP_PACKAGE = "app/package.json";
 const APP_CONFIG = "app/ocelescope.config.ts";
+const APP_TSCONFIG = "app/tsconfig.json";
 
 const run = (command, args) => {
 	const { status, error } = spawnSync(command, args, { stdio: "inherit" });
@@ -104,6 +105,14 @@ if (parts.includes("frontend")) {
 		),
 	);
 	writeFileSync(APP_PACKAGE, `${JSON.stringify(pkg, null, "\t")}\n`);
+
+	// Resolve the module to its sources, so `next dev` picks up changes without a rebuild.
+	const tsconfig = JSON.parse(readFileSync(APP_TSCONFIG, "utf8"));
+	tsconfig.compilerOptions.paths = {
+		...tsconfig.compilerOptions.paths,
+		[name]: [`../${frontendDir}/src/index.ts`],
+	};
+	writeFileSync(APP_TSCONFIG, `${JSON.stringify(tsconfig, null, 2)}\n`);
 
 	// e.g. @instance/ocel-stats -> ocelStatsModule
 	const identifier = `${name

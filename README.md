@@ -47,7 +47,8 @@ frontend module, its npm package name and the backend module to generate a typed
 API client for), creates the module and registers it:
 
 - backend modules are added to the root `pyproject.toml`,
-- frontend modules are added to `app/package.json` and `app/ocelescope.config.ts`.
+- frontend modules are added to `app/package.json`, `app/ocelescope.config.ts`
+  and the `paths` in `app/tsconfig.json` (so `pnpm run dev` uses their sources).
 
 Run `pnpm run sync` afterwards. Extra arguments go to `copier copy`, e.g.
 `pnpm run add:module ocel-stats --defaults`. To use another template (e.g. a
@@ -77,3 +78,31 @@ uv add "ocelescope-backend>=<version>" "ocelescope-module-ocel>=<version>"
 | `pnpm run dev` | Runs the backend and frontend together. |
 | `pnpm run dev:modules` | Watch-rebuild local frontend modules while editing them. |
 | `pnpm run build:modules` | Builds local frontend modules (regenerates their API clients). |
+| `pnpm run docker` | Builds and runs the app (backend + frontend) in Docker. |
+| `pnpm run docker:down` | Stops the Docker containers. |
+
+## Docker
+
+```bash
+pnpm run docker        # docker compose up --build
+pnpm run docker:down   # docker compose down
+```
+
+This builds images for the backend and the frontend (including your modules)
+and serves the app on <http://localhost:3000> and the backend on
+<http://localhost:8000>. Uploaded data lives in Docker volumes; use
+`docker compose down -v` to remove it too.
+
+If the build can't download packages (e.g. while a VPN is active, which can
+break Docker's default network), build with the host network by creating a
+`compose.override.yaml`:
+
+```yaml
+services:
+  backend:
+    build:
+      network: host
+  frontend:
+    build:
+      network: host
+```

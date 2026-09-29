@@ -14,6 +14,8 @@
 		"dev": "pnpm run dev:backend & pnpm run dev:app",
 		"dev:backend": "uv run ocelescope-backend serve --reload --reload-dir backend-modules --env-file .env",
 		"dev:app": "pnpm --filter @instance/app dev",
-		"dev:modules": "pnpm -r --parallel --filter \"!@instance/app\" run dev"
+		"dev:modules": "pnpm -r --parallel --filter \"!@instance/app\" run dev",
+		"docker": "docker compose up --build",
+		"docker:down": "docker compose down"
 	}
 }
