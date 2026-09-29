@@ -21,8 +21,8 @@
       "@/*": [
         "./*"
       ],
-      "@instance/example-module": [
-        "../frontend-modules/example/src/index.ts"
+      "@instance/*": [
+        "../frontend-modules/*/src/index.ts"
       ]
     }
   },
